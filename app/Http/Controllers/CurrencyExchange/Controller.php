@@ -4,18 +4,15 @@ namespace App\Http\Controllers\CurrencyExchange;
 
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller as BaseController;
-use App\Providers\CurrencyExchangeService\FloatRatesService;
 
 class Controller extends BaseController
 {
 
     /**
-     * @param Request           $request
-     * @param FloatRatesService $service
+     * @param Request $request
      *
-     * @throws \GuzzleHttp\Exception\GuzzleException
      */
-    public function get(Request $request, FloatRatesService $service): void
+    public function get(Request $request): void
     {
         $to     = $request->get('to');
         $from   = $request->get('from');
@@ -30,6 +27,7 @@ class Controller extends BaseController
 
         try {
 
+            $service = env('CURRENCY_SERVICE');
             echo $service::convert($to, $from, $amount);
         } catch (\RuntimeException $exception) {
             echo $exception->getMessage();

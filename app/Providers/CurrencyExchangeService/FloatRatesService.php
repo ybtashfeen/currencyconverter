@@ -76,14 +76,13 @@ class FloatRatesService extends CurrencyExchangeService
         }
 
         $endPoint = self::END_POINT . $fromCurrency . '.xml';
-
-        self::testEndPoint($endPoint);
+        //self::testEndPoint($endPoint);
 
         if (self::makeRequest($endPoint)) {
-            $rates = self::filterData();
+            return self::getConvertedPrice($toCurrency, $amount, self::filterData());
         }
 
-        return 0.90;
+        return 0;
 
     }
 
@@ -118,16 +117,28 @@ class FloatRatesService extends CurrencyExchangeService
         $rates = [];
 
         if (self::$ratesXml !== null) {
-            $i = 0;
             foreach (self::$ratesXml->item as $item) {
                 if (array_key_exists((string)$item->targetCurrency, self::CURRENCIES)) {
-                    $rates[$i]['currency'] = (string)$item->targetCurrency;
-                    $rates[$i++]['rate']   = (string)$item->exchangeRate;
+                    $rates[(string)$item->targetCurrency]['rate'] = (string)$item->exchangeRate;
                 }
             }
         }
 
         return $rates;
+    }
+
+    /**
+     * @param string $fromCurrency
+     * @param float  $amount
+     *
+     * @param array  $rates
+     *
+     * @return float
+     */
+    protected static function getConvertedPrice(string $fromCurrency, float $amount, array $rates): float
+    {
+
+        return ($amount * $rates[$fromCurrency]['rate']);
     }
 
 }
