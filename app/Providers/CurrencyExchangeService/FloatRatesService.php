@@ -5,6 +5,8 @@ namespace App\Providers\CurrencyExchangeService;
 class FloatRatesService extends CurrencyExchangeService
 {
 
+    public const ACTIVE = true;
+
     protected const END_POINT = 'http://www.floatrates.com/daily/';
 
     protected const GBP = 'GBP';
