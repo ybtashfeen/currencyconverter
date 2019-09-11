@@ -13,6 +13,10 @@ interface CurrencyExchangeServiceInterface
      */
     public static function isSupportedCurrency(string $currency): bool;
 
+    /**
+     * @return array
+     */
+    public static function filterData(): array;
 
     /**
      * Converts the currencies

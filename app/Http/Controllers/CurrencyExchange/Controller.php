@@ -27,25 +27,24 @@ class Controller extends BaseController
             || $amount === null) {
 
 
-            $response['type'] = 'error';
+            $response['type']    = 'error';
             $response['message'] = 'Required Parameters not found';
+            return $response;
         }
 
-        if($to === $from) {
-            $response['type'] = 'error';
-            $response['message'] = 'Required Parameters not found';
+        if ($to === $from) {
+            $response['type']    = 'error';
+            $response['message'] = 'Please choose different currency';
+            return $response;
         }
 
         try {
 
-            $service = env('CURRENCY_SERVICE');
-
-            $response['type'] = 'success';
-
-            $response['message'] =  $helper->convert($to, $from, $amount);
+            $response['type']    = 'success';
+            $response['message'] = $helper->convert($to, $from, $amount);
 
         } catch (\RuntimeException $exception) {
-            $response['type'] = 'error';
+            $response['type']    = 'error';
             $response['message'] = $exception->getMessage();
         }
 

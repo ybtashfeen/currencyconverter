@@ -8,15 +8,17 @@ class CurrencyExchangeHelper
 {
 
     protected const FloatRatesService = 'App\Providers\CurrencyExchangeService\FloatRatesService';
+    protected const FxExchangeRateService = 'App\Providers\CurrencyExchangeService\FxExchangeRateService';
 
     protected const SERVICES = [
-        self::FloatRatesService
+        self::FloatRatesService,
+        self::FxExchangeRateService
     ];
 
     /**
      * @var CurrencyExchangeServiceInterface $activeService
      */
-    protected $activeService;
+    protected $activeService = null;
 
 
     public function __construct()
@@ -40,7 +42,11 @@ class CurrencyExchangeHelper
      */
     public function convert(string $toCurrency, string $fromCurrency, float $amount): float
     {
-        return $this->activeService::convert($toCurrency, $fromCurrency, $amount);
+        if($this->activeService !== null) {
+
+            return $this->activeService::convert($toCurrency, $fromCurrency, $amount);
+        }
+        return -1;
     }
 
 }

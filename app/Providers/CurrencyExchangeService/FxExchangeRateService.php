@@ -2,12 +2,12 @@
 
 namespace App\Providers\CurrencyExchangeService;
 
-class FloatRatesService extends CurrencyExchangeService
+class FxExchangeRateService extends CurrencyExchangeService
 {
 
-    public const ACTIVE = true;
+    public const ACTIVE = false;
 
-    protected const END_POINT = 'http://www.floatrates.com/daily/';
+    protected const END_POINT = 'fxexchangerate.com/rss.xml';
 
     /**
      * @param string $toCurrency
@@ -20,7 +20,7 @@ class FloatRatesService extends CurrencyExchangeService
     public static function convert(string $toCurrency, string $fromCurrency, float $amount): float
     {
 
-        self::$endPoint = self::END_POINT . $fromCurrency . '.xml';
+        self::$endPoint = 'https://' . $fromCurrency . '.' . self::END_POINT;
 
         return parent::convert($toCurrency, $fromCurrency, $amount);
     }
@@ -35,9 +35,16 @@ class FloatRatesService extends CurrencyExchangeService
         $rates = [];
 
         if (self::$ratesXml !== null) {
-            foreach (self::$ratesXml->item as $item) {
-                if (array_key_exists((string)$item->targetCurrency, self::CURRENCIES)) {
-                    $rates[(string)$item->targetCurrency]['rate'] = (string)$item->exchangeRate;
+            foreach (self::$ratesXml->channel->item as $item) {
+
+                preg_match_all('/\((.*?)\)/', $item->title, $currencies);
+
+                if (array_key_exists($currencies[1][1], self::CURRENCIES)) {
+
+                    $desc = explode('=', $item->description)[1];
+
+                    preg_match('/[0-9\.]+/', $desc, $rate);
+                    $rates[$currencies[1][1]]['rate'] = $rate[0];
                 }
             }
         }
