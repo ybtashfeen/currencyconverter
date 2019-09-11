@@ -38,7 +38,7 @@ class FloatRatesService extends CurrencyExchangeService
         if (self::$ratesXml !== null) {
             foreach (self::$ratesXml->item as $item) {
                 if (in_array((string)$item->targetCurrency, self::CURRENCIES, true)) {
-                    $rates[(string)$item->targetCurrency]['rate'] = (string)$item->exchangeRate;
+                    $rates[(string)$item->targetCurrency]['rate'] = (string)str_replace(',','',$item->exchangeRate);
                 }
             }
         }

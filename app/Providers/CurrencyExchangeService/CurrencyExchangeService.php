@@ -347,7 +347,7 @@ abstract class CurrencyExchangeService implements CurrencyExchangeServiceInterfa
     protected static function getConvertedPrice(string $fromCurrency, float $amount, array $rates): float
     {
 
-        if(!empty($rates)) {
+        if(!empty($rates) && isset($rates[$fromCurrency])) {
 
             return ($amount * $rates[$fromCurrency]['rate']);
         }

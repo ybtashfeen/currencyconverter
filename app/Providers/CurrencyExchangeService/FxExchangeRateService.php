@@ -44,7 +44,7 @@ class FxExchangeRateService extends CurrencyExchangeService
                     $desc = explode('=', $item->description)[1];
 
                     preg_match('/[0-9\.]+/', $desc, $rate);
-                    $rates[$currencies[1][1]]['rate'] = $rate[0];
+                    $rates[$currencies[1][1]]['rate'] = str_replace(',','',$rate[0]);
                 }
             }
         }

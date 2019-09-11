@@ -34,18 +34,18 @@ class CurrencyExchangeHelper
     }
 
 
-    /** goes throught the service and converts the amount
+    /** goes through the service and converts the amount
      * @param string $toCurrency
      * @param string $fromCurrency
      * @param float  $amount
      *
-     * @return float
+     * @return string
      */
-    public function convert(string $toCurrency, string $fromCurrency, float $amount): float
+    public function convert(string $toCurrency, string $fromCurrency, float $amount): string
     {
         if($this->activeService !== null) {
 
-            return $this->activeService::convert($toCurrency, $fromCurrency, $amount);
+            return number_format($this->activeService::convert($toCurrency, $fromCurrency, $amount), 2, '.', ',');
         }
         return -1;
     }
