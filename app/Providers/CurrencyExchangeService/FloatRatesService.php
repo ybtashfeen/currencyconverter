@@ -5,6 +5,7 @@ namespace App\Providers\CurrencyExchangeService;
 class FloatRatesService extends CurrencyExchangeService
 {
 
+    //set it to true to use this service or false to stop this service
     public const ACTIVE = true;
 
     protected const END_POINT = 'http://www.floatrates.com/daily/';
@@ -36,7 +37,7 @@ class FloatRatesService extends CurrencyExchangeService
 
         if (self::$ratesXml !== null) {
             foreach (self::$ratesXml->item as $item) {
-                if (array_key_exists((string)$item->targetCurrency, self::CURRENCIES)) {
+                if (in_array((string)$item->targetCurrency, self::CURRENCIES, true)) {
                     $rates[(string)$item->targetCurrency]['rate'] = (string)$item->exchangeRate;
                 }
             }

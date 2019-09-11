@@ -4,7 +4,7 @@ namespace App\Providers\CurrencyExchangeService;
 
 class FxExchangeRateService extends CurrencyExchangeService
 {
-
+    //set it to true to use this service or false to stop this service
     public const ACTIVE = false;
 
     protected const END_POINT = 'fxexchangerate.com/rss.xml';
@@ -39,7 +39,7 @@ class FxExchangeRateService extends CurrencyExchangeService
 
                 preg_match_all('/\((.*?)\)/', $item->title, $currencies);
 
-                if (array_key_exists($currencies[1][1], self::CURRENCIES)) {
+                if (in_array($currencies[1][1], self::CURRENCIES, true)) {
 
                     $desc = explode('=', $item->description)[1];
 

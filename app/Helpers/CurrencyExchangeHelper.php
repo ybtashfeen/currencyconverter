@@ -24,6 +24,7 @@ class CurrencyExchangeHelper
     public function __construct()
     {
         //get active service
+        //this will return the first active service it finds
         foreach (self::SERVICES as $SERVICE) {
             if($SERVICE::ACTIVE) {
                 $this->activeService = $SERVICE;
@@ -33,7 +34,7 @@ class CurrencyExchangeHelper
     }
 
 
-    /**
+    /** goes throught the service and converts the amount
      * @param string $toCurrency
      * @param string $fromCurrency
      * @param float  $amount
