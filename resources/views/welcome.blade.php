@@ -20,9 +20,6 @@
     <!-- Latest compiled JavaScript -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 
-    <style>
-
-    </style>
 </head>
 <body class="">
 <div id="container">
@@ -35,10 +32,9 @@
                         <div class="row">
                             <label class="pad-10">From</label>
                             <select id="from_currency" name="from_currency" required class="txt">
-                                <option>GBP</option>
-                                <option>USD</option>
-                                <option>EUR</option>
-                                <option>AUD</option>
+                                @foreach($currencies as $currency)
+                                    <option>{{ $currency }}</option>
+                                @endforeach
                             </select>
                         </div>
                     </div>
@@ -46,10 +42,9 @@
                         <div class="row">
                             <label class="title">To</label>
                             <select id="to_currency" name="to_currency">
-                                <option>GBP</option>
-                                <option>USD</option>
-                                <option>EUR</option>
-                                <option>AUD</option>
+                                @foreach($currencies as $currency)
+                                    <option>{{ $currency }}</option>
+                                @endforeach
                             </select>
                         </div>
                     </div>

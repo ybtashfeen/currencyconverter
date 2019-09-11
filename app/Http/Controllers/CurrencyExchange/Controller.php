@@ -33,8 +33,8 @@ class Controller extends BaseController
         }
 
         if ($to === $from) {
-            $response['type']    = 'error';
-            $response['message'] = 'Please choose different currency';
+            $response['type']    = 'success';
+            $response['message'] = $amount;
             return $response;
         }
 

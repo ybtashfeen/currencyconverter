@@ -49,4 +49,12 @@ class CurrencyExchangeHelper
         return -1;
     }
 
+    /**
+     * @return array
+     */
+    public function getAllCurrencies(): array
+    {
+        return $this->activeService::getAllCurrencies();
+    }
+
 }

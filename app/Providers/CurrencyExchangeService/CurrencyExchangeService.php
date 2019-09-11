@@ -152,4 +152,9 @@ abstract class CurrencyExchangeService implements CurrencyExchangeServiceInterfa
 
     }
 
+    public static function getAllCurrencies(): array
+    {
+        return array_keys(self::CURRENCIES);
+    }
+
 }
