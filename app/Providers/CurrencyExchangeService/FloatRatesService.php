@@ -7,7 +7,7 @@ namespace App\Providers\CurrencyExchangeService;
  *
  * @package App\Providers\CurrencyExchangeService
  */
-class FloatRatesService extends CurrencyExchangeService
+class FloatRatesService extends AbstractCurrencyExchangeService
 {
 
     //set it to true to use this service or false to stop this service

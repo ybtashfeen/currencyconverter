@@ -15,10 +15,10 @@ use Tests\TestCase;
 /**
  * Class CurrencyExchangeServiceTest
  *
- * @covers  \App\Providers\CurrencyExchangeService\CurrencyExchangeService
+ * @covers  \App\Providers\CurrencyExchangeService\AbstractCurrencyExchangeService
  * @package Tests\Providers\CurrencyExchangeService
  */
-class CurrencyExchangeService extends TestCase
+class AbstractCurrencyExchangeService extends TestCase
 {
 
     /**

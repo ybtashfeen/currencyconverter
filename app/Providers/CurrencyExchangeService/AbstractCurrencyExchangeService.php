@@ -7,7 +7,7 @@ namespace App\Providers\CurrencyExchangeService;
  *
  * @package App\Providers\CurrencyExchangeService
  */
-abstract class CurrencyExchangeService implements CurrencyExchangeServiceInterface
+abstract class AbstractCurrencyExchangeService implements CurrencyExchangeServiceInterface
 {
 
     protected const END_POINT = 'Define it';
@@ -328,7 +328,7 @@ abstract class CurrencyExchangeService implements CurrencyExchangeServiceInterfa
     {
         $client      = new \GuzzleHttp\Client();
         $response    = $client->request('GET', $endPoint)->getBody()->getContents();
-        $responseXml = \simplexml_load_string($response);
+        $responseXml = simplexml_load_string($response);
 
         if ($responseXml instanceof \SimpleXMLElement) {
             self::$ratesXml = $responseXml;

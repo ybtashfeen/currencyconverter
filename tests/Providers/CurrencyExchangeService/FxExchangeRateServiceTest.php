@@ -17,7 +17,7 @@ use App\Providers\CurrencyExchangeService\FxExchangeRateService;
  * @covers  \App\Providers\CurrencyExchangeService\FxExchangeRateService
  * @package Tests\Providers\CurrencyExchangeService
  */
-class FxExchangeRateServiceTest extends CurrencyExchangeService
+class FxExchangeRateServiceTest extends AbstractCurrencyExchangeService
 {
 
     /**

@@ -17,7 +17,7 @@ use App\Providers\CurrencyExchangeService\FloatRatesService;
  * @covers  \App\Providers\CurrencyExchangeService\FloatRatesService
  * @package Tests\Providers\CurrencyExchangeService
  */
-class FloatRatesServiceTest extends CurrencyExchangeService
+class FloatRatesServiceTest extends AbstractCurrencyExchangeService
 {
 
     /**
@@ -40,7 +40,7 @@ class FloatRatesServiceTest extends CurrencyExchangeService
         $reflection = new \ReflectionObject($this->service);
         $property   = $reflection->getProperty('ratesXml');
         $property->setAccessible(true);
-        $property->setValue(\simplexml_load_string(self::getTestXml()));
+        $property->setValue(simplexml_load_string(self::getTestXml()));
 
         $method = $reflection->getMethod('filterData');
         $actual   = $method->invoke($this->service);
