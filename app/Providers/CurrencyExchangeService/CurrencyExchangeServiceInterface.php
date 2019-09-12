@@ -2,10 +2,15 @@
 
 namespace App\Providers\CurrencyExchangeService;
 
+/**
+ * Interface CurrencyExchangeServiceInterface
+ *
+ * @package App\Providers\CurrencyExchangeService
+ */
 interface CurrencyExchangeServiceInterface
 {
     /**
-     * Checks id Currency is supported by this service
+     * Checks if Currency is supported by this service
      *
      * @param string $currency
      *
@@ -36,4 +41,13 @@ interface CurrencyExchangeServiceInterface
      * @return void
      */
     public static function testEndPoint(string $endPoint): bool;
+
+    /**
+     * @param string $toCurrency
+     * @param float  $amount
+     * @param array  $rates
+     *
+     * @return float
+     */
+    public static function getConvertedPrice(string $toCurrency, float $amount, array $rates): float;
 }

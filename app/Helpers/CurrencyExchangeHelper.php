@@ -4,6 +4,11 @@ namespace App\Helpers;
 
 use App\Providers\CurrencyExchangeService\CurrencyExchangeServiceInterface;
 
+/**
+ * Class CurrencyExchangeHelper
+ *
+ * @package App\Helpers
+ */
 class CurrencyExchangeHelper
 {
 

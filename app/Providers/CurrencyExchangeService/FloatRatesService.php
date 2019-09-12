@@ -2,6 +2,11 @@
 
 namespace App\Providers\CurrencyExchangeService;
 
+/**
+ * Class FloatRatesService
+ *
+ * @package App\Providers\CurrencyExchangeService
+ */
 class FloatRatesService extends CurrencyExchangeService
 {
 

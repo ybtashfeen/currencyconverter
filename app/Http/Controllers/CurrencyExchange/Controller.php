@@ -6,6 +6,11 @@ use App\Helpers\CurrencyExchangeHelper;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller as BaseController;
 
+/**
+ * Class Controller
+ *
+ * @package App\Http\Controllers\CurrencyExchange
+ */
 class Controller extends BaseController
 {
 
@@ -32,6 +37,7 @@ class Controller extends BaseController
             return $response;
         }
 
+        //if they are same just return the amount
         if ($to === $from) {
             $response['type']    = 'success';
             $response['message'] = $amount;

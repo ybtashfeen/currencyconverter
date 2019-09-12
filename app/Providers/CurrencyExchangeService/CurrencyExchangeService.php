@@ -2,6 +2,11 @@
 
 namespace App\Providers\CurrencyExchangeService;
 
+/**
+ * Class CurrencyExchangeService
+ *
+ * @package App\Providers\CurrencyExchangeService
+ */
 abstract class CurrencyExchangeService implements CurrencyExchangeServiceInterface
 {
 
@@ -337,19 +342,18 @@ abstract class CurrencyExchangeService implements CurrencyExchangeServiceInterfa
     /**
      * Returns the converted prices
      * -1 means it was not found
-     * @param string $fromCurrency
+     * @param string $toCurrency
      * @param float  $amount
      *
      * @param array  $rates
      *
      * @return float
      */
-    protected static function getConvertedPrice(string $fromCurrency, float $amount, array $rates): float
+    public static function getConvertedPrice(string $toCurrency, float $amount, array $rates): float
     {
+        if(!empty($rates) && isset($rates[$toCurrency])) {
 
-        if(!empty($rates) && isset($rates[$fromCurrency])) {
-
-            return ($amount * $rates[$fromCurrency]['rate']);
+            return ($amount * $rates[$toCurrency]['rate']);
         }
         return -1;
     }

@@ -2,6 +2,11 @@
 
 namespace App\Providers\CurrencyExchangeService;
 
+/**
+ * Class FxExchangeRateService
+ *
+ * @package App\Providers\CurrencyExchangeService
+ */
 class FxExchangeRateService extends CurrencyExchangeService
 {
     //set it to true to use this service or false to stop this service
